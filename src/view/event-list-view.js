@@ -1,4 +1,5 @@
 import AbstractView from '../framework/view/abstract-view';
+
 function createEventListTemplate () {
   return '<ul class="trip-events__list"></ul>';
 }
