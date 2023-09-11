@@ -1,7 +1,6 @@
-
 import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-veiw.js';
-
+import { Mode } from '../mock/const.js';
 import { render, remove, replace } from '../framework/render.js';
 
 export default class PointPresenter {
@@ -11,16 +10,19 @@ export default class PointPresenter {
   #offersModel = null;
 
   #handleDataChange = null;
+  #handleModeChange = null;
 
   #pointComponent = null;
   #pointEditComponent = null;
   #point = null;
+  #mode = Mode.DEFAULT;
 
-  constructor({ container, destinationsModel, offersModel, onDataChange }) {
+  constructor({ container, destinationsModel, offersModel, onDataChange, onModeChange }) {
     this.#container = container;
     this.#destinationsModel = destinationsModel;
     this.#offersModel = offersModel;
     this.#handleDataChange = onDataChange;
+    this.#handleModeChange = onModeChange;
   }
 
   init(point) {
@@ -50,10 +52,25 @@ export default class PointPresenter {
       return;
     }
 
+    if(this.#mode === Mode.DEFAULT) {
+      replace(this.#pointComponent, prevPointComponent);
+    }
+
+    if(this.#mode === Mode.EDITING) {
+      replace(this.#pointEditComponent, prevPointEditComponent);
+
+    }
+
     remove(prevPointComponent);
     remove(prevPointEditComponent);
 
   }
+
+  resetView = () => {
+    if(this.#mode !== Mode.DEFAULT) {
+      this.#replaceEditToPoint();
+    }
+  };
 
   destroy = () => {
     remove(this.#pointComponent);
@@ -63,11 +80,14 @@ export default class PointPresenter {
   #replacePointToEdit = () => {
     replace(this.#pointEditComponent, this.#pointComponent);
     document.addEventListener('keydown', this.#escKeyDownHandler);
+    this.#handleModeChange();
+    this.#mode = Mode.EDITING;
   };
 
   #replaceEditToPoint = () => {
     replace(this.#pointComponent, this.#pointEditComponent);
-    document.addEventListener('keydown', this.#escKeyDownHandler);
+    document.removeEventListener('keydown', this.#escKeyDownHandler);
+    this.#mode = Mode.DEFAULT;
   };
 
   #escKeyDownHandler = (evt) => {

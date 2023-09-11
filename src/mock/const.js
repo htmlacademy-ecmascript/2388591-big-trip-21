@@ -49,6 +49,12 @@ const POINT_EMPTY = {
   offers: [],
   type: DEFAULT_TYPE
 };
+
+const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
+};
+
 export {
   POINT_TYPES,
   DESTINATION_COUNT,
@@ -59,7 +65,8 @@ export {
   DESCRIPTION,
   Price,
   Duration,
-  OFFER_TYPE
+  OFFER_TYPE,
+  Mode
 };
 
 

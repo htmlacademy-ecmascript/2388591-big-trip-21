@@ -30,12 +30,17 @@ export default class BoardPresenter {
     this.#renderBoard();
   }
 
+  #modeChangeHandler = () => {
+    this.#pointPresenters.forEach((presenter) => presenter.resetView());
+  };
+
   #renderPoint = (point) => {
     const pointPresenter = new PointPresenter({
       container: this.#eventListComponent.element,
       destinationsModel: this.#destinationsModel,
       offersModel: this.#offersModel,
       onDataChange: this.#pointChangeHandler,
+      onModeChange: this.#modeChangeHandler
     });
 
     pointPresenter.init(point);
