@@ -66,6 +66,9 @@ function getScheduledDate(date) {
   return dayjs(date).format('DD/MM/YY HH:mm');
 }
 
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
 export {
   getRandomArrayElement,
   getRandomInteger,
@@ -74,5 +77,6 @@ export {
   formatStringToTime,
   getPointDuration,
   capitalize,
-  getScheduledDate
+  getScheduledDate,
+  updateItem
 };
