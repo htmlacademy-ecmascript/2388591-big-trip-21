@@ -4,7 +4,7 @@ import {
   formatStringToShortDate,
   formatStringToTime,
   getPointDuration
-} from '../utils';
+} from '../utils/utils';
 
 function createPointTemplate({point, pointDestination, pointOffers}) {
   const {
