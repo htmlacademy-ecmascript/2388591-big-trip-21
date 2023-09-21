@@ -1,5 +1,4 @@
-
-import { getRandomInteger } from '../utils.js';
+import {getRandomInteger} from '../utils/utils.js';
 import { Price } from './const.js';
 import { getDate } from './date.js';
 

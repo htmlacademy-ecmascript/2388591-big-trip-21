@@ -55,6 +55,21 @@ const Mode = {
   EDITING: 'EDITING',
 };
 
+const SortType = {
+  DAY: 'day',
+  EVENT: 'event',
+  TIME: 'time',
+  PRICE: 'price',
+  OFFER: 'offer'
+};
+
+const enabledSortType = {
+  [SortType.DAY]: true,
+  [SortType.EVENT]: false,
+  [SortType.TIME]: true,
+  [SortType.PRICE]: true,
+  [SortType.OFFER]: false
+};
 export {
   POINT_TYPES,
   DESTINATION_COUNT,
@@ -66,6 +81,8 @@ export {
   Price,
   Duration,
   OFFER_TYPE,
+  SortType,
+  enabledSortType,
   Mode
 };
 
